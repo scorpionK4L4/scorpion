@@ -131,7 +131,7 @@ export function Dashboard({ wallet, onSignOut }: { wallet: LocalWallet; onSignOu
     try {
       const challenge = await fetchChallenge();
       const solution = await solveChallenge(challenge);
-      const { data } = await api.post("/send", {
+      const { data } = await api.post<{ wallet: Partial<WalletState> }>("/send", {
         from: wallet.address,
         to,
         amount: Number(amount),

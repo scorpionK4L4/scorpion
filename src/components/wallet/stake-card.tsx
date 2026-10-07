@@ -86,7 +86,7 @@ export function StakeCard({
     }
     setBusy(true);
     try {
-      const { data } = await api.post("/stake", body);
+      const { data } = await api.post<{ reward?: number; wallet?: Partial<WalletState> }>("/stake", body);
       if (action === "stake") {
         toast({
           title: "Staked",
@@ -101,7 +101,7 @@ export function StakeCard({
         });
       } else {
         toast({
-          title: `Claimed +${formatAmount(data.reward, 6)} ${APP_TOKEN_SYMBOL}`,
+          title: `Claimed +${formatAmount(data.reward ?? 0, 6)} ${APP_TOKEN_SYMBOL}`,
           description: "Rewards added to your balance.",
           variant: "success" as any,
         });

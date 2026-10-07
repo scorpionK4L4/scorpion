@@ -133,12 +133,12 @@ export function DepositCard({
     }
     setBusy(true);
     try {
-      const { data } = await api.post("/deposit", {
+      const { data } = await api.post<{ deposit: PendingDeposit }>("/deposit", {
         address,
         currency,
         amount: numericAmount,
       });
-      const deposit = data.deposit as PendingDeposit;
+      const deposit = data.deposit;
       setActiveDeposit(deposit);
       setModalStep("send");
       setAmount("");
@@ -158,12 +158,12 @@ export function DepositCard({
     if (!activeDeposit || markingAsSent) return;
     setMarkingAsSent(true);
     try {
-      const { data } = await api.post("/deposit", {
+      const { data } = await api.post<{ deposit: PendingDeposit }>("/deposit", {
         action: "confirm-sent",
         address,
         depositId: activeDeposit.id,
       });
-      const updated = data.deposit as PendingDeposit;
+      const updated = data.deposit;
       setPendingDeposits((prev) =>
         prev.map((d) => (d.id === updated.id ? updated : d))
       );

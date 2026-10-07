@@ -139,7 +139,7 @@ export function CheckInCard({
     if (!status?.canClaim || claiming) return;
     setClaiming(true);
     try {
-      const { data } = await api.post("/checkin", { address });
+      const { data } = await api.post<{ reward: number; streak: number; wallet?: Partial<WalletState> }>("/checkin", { address });
       fireCelebration(data.reward);
       toast({
         title: `+${formatAmount(data.reward)} ${APP_TOKEN_SYMBOL}`,
