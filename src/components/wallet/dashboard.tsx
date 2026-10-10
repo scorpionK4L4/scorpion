@@ -303,7 +303,7 @@ export function Dashboard({ wallet, onSignOut }: { wallet: LocalWallet; onSignOu
       <div className="relative mt-5 flex gap-1.5 rounded-2xl bg-white/[0.04] p-1.5 ring-1 ring-white/[0.08]">
         <div
           className={cn(
-            "absolute top-1.5 bottom-1.5 rounded-xl bg-gradient-to-r transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)]",
+            "absolute top-1.5 bottom-1.5 rounded-xl bg-gradient-to-r transition-all duration-300 ease-[cubic-bezier(0.22_1_0.36_1)]",
             TABS.find((t) => t.id === activeTab)!.accent
           )}
           style={{
